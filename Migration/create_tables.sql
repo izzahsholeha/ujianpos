@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS suppliers (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(50) DEFAULT NULL,
+    address VARCHAR(255) DEFAULT NULL,
+    phone VARCHAR(50) DEFAULT NULL,
+    email VARCHAR(50) DEFAULT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS sales (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    supplier_id INT(10) UNSIGNED NOT NULL,
+    total INT(10) UNSIGNED DEFAULT NULL,
+    PRIMARY KEY (id),
+    KEY supplier_id (supplier_id),
+    CONSTRAINT sales_ibfk_1
+        FOREIGN KEY (supplier_id)
+        REFERENCES suppliers(id)
+) ENGINE=InnoDB;
